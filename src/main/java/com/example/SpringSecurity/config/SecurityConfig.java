@@ -59,13 +59,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                        //.csrf((httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable()))
+                        .csrf((httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable()))
                         .authorizeHttpRequests((auth) -> {auth.requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/common/**").permitAll()
                         .anyRequest().authenticated();
         })
                 .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults()); // This enables Postman calls
         return httpSecurity.build();
     }
 }

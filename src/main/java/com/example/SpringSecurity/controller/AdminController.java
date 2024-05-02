@@ -38,6 +38,11 @@ public class AdminController {
         return "Hello from Admin";
     }
 
+
+    // This post call was not working because by default Java Springboot has enabled CRSF.
+    // With CRSF we cannot modify resources without getting token from backend to check if it's a legitimate request.
+    // To make post request - CRSF token (generate by same app from backend) and JSessionID is required.
+
     @PostMapping("/hello")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String postHello(@AuthenticationPrincipal UserDetails userDetails)
