@@ -23,6 +23,7 @@ public class AdminController {
     @PostMapping("/create-user")
     ResponseEntity<Long> createUser(@RequestBody AppUser user)
     {
+        LOGGER.info("Processing create User request");
         Long id = appUserDetailsService.createUser(user);
         return ResponseEntity.ok(id);
     }
